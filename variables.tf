@@ -10,4 +10,14 @@ variable "location" {
 
 variable "environment" {
     type = string
+    description = "Name of environment."
+}
+
+variable "cluster_name" {
+  type = string
+  description = "Name of compute cluster for AML."
+}
+
+variable "workspace_name" {
+  type = string
 }
