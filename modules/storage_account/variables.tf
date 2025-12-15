@@ -13,12 +13,3 @@ variable "access_tier" {
 variable "account_replication_type" {
     type = string
 }
-variable "key_vault_name" {
-  type = string
-}
-variable "application_insights_name" {
-  type = string
-}
-variable "container_registry_name" {
-  type = string
-}
