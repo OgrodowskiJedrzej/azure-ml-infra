@@ -33,15 +33,15 @@ variable "cluster_name" {
 
 variable "cluster_instance_type" {
   type    = string
-  default = "Standard_DS3_v2"
+  default = "Standard_NC4as_T4_v3"
 
   validation {
     condition = contains(
       [
-        "Standard_DS3_v2",
-        "Standard_DS4_v2",
-        "Standard_NC6",
-        "Standard_NC12"
+        "Standard_DS3_v2",         # CPU
+        "Standard_DS4_v2",         # CPU
+        "Standard_NC4as_T4_v3",    # GPU
+        "Standard_NC24ads_A100_v4" # GPU
       ],
       var.cluster_instance_type
     )
@@ -71,4 +71,8 @@ variable "tags" {
     "Environment" = "dev"
     "ManagedBy" = "Terraform"
   }
+}
+
+variable "subscription_id" {
+  type = string
 }

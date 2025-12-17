@@ -14,4 +14,5 @@ provider "azurerm" {
       recover_soft_deleted_key_vaults = true
     }
   }
+  subscription_id = var.subscription_id
 }
