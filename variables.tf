@@ -8,7 +8,7 @@ variable "resource_group_name" {
     }
 
     validation {
-      condition     = can(regex("^[a-zA-Z0-9._\\-()]+$", var.resource_group_name))
+      condition     = can(regex("^[a-zA-Z0-9]+$", var.resource_group_name))
       error_message = "Resource group name contains invalid characters."
     }
 }
