@@ -79,16 +79,6 @@ values - running Terraform in a different Azure subscription or account
 
 No manual setup in the Azure Portal is required.
 
-------------------------------------------------------------------------
-
-## Roadmap (Future Improvements)
-
--   Remote Terraform backend (Azure Storage)
--   Multiple environments (`dev / prod`)
--   Managed identities instead of admin credentials
--   Private endpoints and networking
--   CI/CD with GitHub Actions
--   Model training & experiment tracking pipelines
 
 ------------------------------------------------------------------------
 
