@@ -11,6 +11,16 @@ resource "random_string" "suffix" {
   special = false
 }
 
+module "network" {
+  source                 = "./modules/network"
+  resource_group_name    = module.resource_group.name
+  location               = module.resource_group.locaction
+  vnet_name              = "vnet-mlops"
+  address_space          = "10.0.0.0/16"
+  endpoints_subnet_prefix = "10.0.1.0/24"
+  compute_subnet_prefix   = "10.0.2.0/24"
+}
+
 module "storage_account" {
   source = "./modules/storage_account"
 
@@ -19,6 +29,8 @@ module "storage_account" {
   location                    = module.resource_group.location
   account_replication_type    = "LRS"
   access_tier                 = "Hot"
+  subnet_id                   = module.network.endpoints_subnet_id
+  private_dns_zone_id         = TODO
 }
 
 module "key_vault" {
