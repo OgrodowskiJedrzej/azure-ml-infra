@@ -7,3 +7,9 @@ variable "azurerm_resource_group_name" {
 variable "location" {
     type = string
 }
+variable "subnet_id" {
+
+}
+variable "private_dns_zone_id" {
+  
+}

@@ -25,3 +25,6 @@ variable "vm_size" {
     error_message = "Compute Cluster instance must be checked, cost effective."
   }
 }
+variable "compute_subnet_id" {
+  
+}

@@ -25,3 +25,11 @@ variable "container_registry_id" {
 variable "application_insights_id" {
     type =  string
 }
+
+variable "subnet_id" {
+  
+}
+
+variable "private_dns_zone_ids" {
+  
+}

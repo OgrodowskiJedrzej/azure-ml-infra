@@ -30,7 +30,7 @@ module "storage_account" {
   account_replication_type    = "LRS"
   access_tier                 = "Hot"
   subnet_id                   = module.network.endpoints_subnet_id
-  private_dns_zone_id         = TODO
+  private_dns_zone_id         = module.network.dns_zones["privatelink.blob.core.windows.net"].id
 }
 
 module "key_vault" {
@@ -39,6 +39,8 @@ module "key_vault" {
   key_vault_name              = "kv${var.resource_group_name}${random_string.suffix.result}"
   azurerm_resource_group_name = module.resource_group.rg_name
   location                    = module.resource_group.location
+  subnet_id                   = module.network.endpoints_subnet_id
+  private_dns_zone_id         = module.network.dns_zones["privatelink.vaultcore.azure.net"].id  
 }
 
 module "application_insights" {
@@ -55,6 +57,8 @@ module "container_registry" {
   container_registry_name     = "cr${var.resource_group_name}${random_string.suffix.result}"
   azurerm_resource_group_name = module.resource_group.rg_name
   location                    = module.resource_group.location
+  subnet_id                   = module.network.endpoints_subnet_id
+  private_dns_zone_id         = module.network.dns_zones["privatelink.azurecr.io"].id 
 }
 
 module "azureml_workspace" {
@@ -67,6 +71,11 @@ module "azureml_workspace" {
   application_insights_id = module.application_insights.id
   key_vault_id            = module.key_vault.id
   storage_account_id      = module.storage_account.storage_account_id
+  subnet_id               = module.network.endpoints_subnet_id 
+  private_dns_zone_ids = [
+    module.network.dns_zones["privatelink.api.azureml.ms"].id,
+    module.network.dns_zones["privatelink.notebooks.azure.net"].id
+  ]
 }
 
 module "compute_cluster" {
@@ -76,4 +85,5 @@ module "compute_cluster" {
   location     = module.resource_group.location
   workspace_id = module.azureml_workspace.id
   vm_size      = var.cluster_instance_type
+  compute_subnet_id = module.network.compute_subnet_id
 }

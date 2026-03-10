@@ -13,11 +13,9 @@ variable "access_tier" {
 variable "account_replication_type" {
     type = string
 }
-
 variable "subnet_id" {
-  
+    type = string
 }
-
 variable "private_dns_zone_id" {
-  
+    type = string
 }

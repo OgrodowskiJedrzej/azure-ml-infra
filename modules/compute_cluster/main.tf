@@ -14,4 +14,6 @@ resource "azurerm_machine_learning_compute_cluster" "cc-gpu" {
     identity {
       type = "SystemAssigned"
     }
+    subnet_resource_id = var.compute_subnet_id
+    node_public_ip_enabled = false
 }

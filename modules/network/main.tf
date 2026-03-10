@@ -11,11 +11,11 @@ resource "azurerm_subnet" "subnet_endpoints" {
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = [ var.endpoints_subnet_prefix ]
   
-  private_endpoint_network_policies = true
+  private_endpoint_network_policies = "Enabled"
 }
 
 resource "azurerm_subnet" "subnet_compute" {
-  name                 = "subnet-endpoints"
+  name                 = "subnet-compute"
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = [ var.compute_subnet_prefix ]
